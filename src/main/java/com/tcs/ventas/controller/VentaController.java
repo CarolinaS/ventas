@@ -18,7 +18,7 @@ public class VentaController {
 	@Autowired
 	private ProductoBusiness productoBusiness;
 
-	@GetMapping("/venta")
+	@GetMapping("/ventas")
 	public List<Venta> getAll() {
 		List<Venta> ventas;
 
@@ -26,10 +26,10 @@ public class VentaController {
 		List<Producto> productosventa1 = new ArrayList<>();
 		productosventa1.add(productoBusiness.getById(1));
 		productosventa1.add(productoBusiness.getById(2));
-		Venta venta1 = new Venta(1, 1, new BigDecimal(12.3), productosventa1);
+		Venta venta1 = new Venta(productosventa1, new BigDecimal(12.0), new BigDecimal(78.9));
 		List<Producto> productosventa2 = new ArrayList<>();
 		productosventa2.add(productoBusiness.getById(3));
-		Venta venta2 = new Venta(2, 2, new BigDecimal(30.3), productosventa2);
+		Venta venta2 = new Venta(productosventa2, new BigDecimal(6.0), new BigDecimal(97.6));
 		// Venta venta3 = new Venta(3, 3, new BigDecimal(42.8));
 
 		ventas.add(venta1);
