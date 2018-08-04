@@ -1,0 +1,4 @@
+spring:
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:G:\tools\sqlite-tools-win32-x86-3240000/ventas.db
