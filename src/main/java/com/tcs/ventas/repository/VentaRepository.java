@@ -16,12 +16,12 @@ public class VentaRepository {
 	private JdbcTemplate jdbcTemplate;
 
 	public List<Venta> getAll() {
-		String sql = "SELECT v.c_codigo_venta,v.c_total,v.c_codigo_cliente, c.c_nombre_cliente, c.c_apellido_paterno_cliente , c.c_apellido_materno_cliente , c.c_codigo_cliente FROM t_cliente c , t_venta v , t_venta_detalle d where c.c_codigo_cliente = v.c_codigo_cliente ";
+		String sql = "SELECT v.c_codigo_venta,v.c_total , v.c_codigo_cliente, c.c_nombre_cliente, c.c_apellido_paterno_cliente , c.c_apellido_materno_cliente FROM  t_venta v ,t_cliente c where v.c_codigo_cliente=c.c_codigo_cliente";
 		return jdbcTemplate.query(sql, (rs, rowNum) -> {
 
 			Venta venta = new Venta();
 			venta.setCodigo(rs.getInt("c_codigo_venta"));
-			//venta.setImporteTotal(rs.getBigDecimal("c_total"));
+			venta.setImporteTotal(rs.getBigDecimal("c_total"));
 			Cliente cli = new Cliente();
 			cli.setCodigo(rs.getInt("c_codigo_cliente"));
 			cli.setNombres(rs.getString("c_nombre_cliente"));
@@ -39,8 +39,7 @@ public class VentaRepository {
 	}
 
 	public Venta getById(int codigoVenta) {
-		String sql = "SELECT v.c_codigo_venta,v.c_total,v.c_codigo_cliente, c.c_nombre_cliente, c.c_apellido_paterno_cliente , c.c_apellido_materno_cliente , c.c_codigo_cliente FROM t_cliente c , t_venta v , t_venta_detalle d"
-				+ " where c.c_codigo_cliente = v.c_codigo_cliente and  v.c_codigo_venta = ?";
+		String sql = "SELECT v.c_codigo_venta,v.c_total , v.c_codigo_cliente, c.c_nombre_cliente, c.c_apellido_paterno_cliente , c.c_apellido_materno_cliente FROM t_cliente c , t_venta v where  v.c_codigo_cliente=c.c_codigo_cliente and v.c_codigo_venta = ?";
 		return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
 
 			Venta venta = new Venta();
