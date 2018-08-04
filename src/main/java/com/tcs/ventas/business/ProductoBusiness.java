@@ -1,6 +1,5 @@
 package com.tcs.ventas.business;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +35,3 @@ public class ProductoBusiness {
 	}
 
 }
-

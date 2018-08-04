@@ -17,7 +17,6 @@ import com.tcs.ventas.model.Venta;
 @RestController
 public class VentaController {
 
-	
 //	@GetMapping("/ventas")
 //	public List<Venta> getAll() {
 //		List<Venta> ventas;
@@ -37,7 +36,7 @@ public class VentaController {
 //		// ventas.add(venta3);
 //		return ventas;
 //	}
-	
+
 	@Autowired
 	private VentaBusiness ventaBusiness;
 
@@ -70,9 +69,5 @@ public class VentaController {
 //		ventaBusiness.remove(codigoVenta);
 //		return ventaEliminar;
 //	}
-	
-	
-	
-	
-	
+
 }

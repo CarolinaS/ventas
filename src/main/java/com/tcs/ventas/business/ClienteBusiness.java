@@ -1,6 +1,5 @@
 package com.tcs.ventas.business;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ public class ClienteBusiness {
 	@Autowired
 	private ClienteRepository clienteRepository;
 
-	
 	public List<Cliente> getAll() {
 		return clienteRepository.getAll();
 	}
@@ -37,4 +35,3 @@ public class ClienteBusiness {
 	}
 
 }
-

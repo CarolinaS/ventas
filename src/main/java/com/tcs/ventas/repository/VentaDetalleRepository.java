@@ -30,13 +30,11 @@ public class VentaDetalleRepository {
 		});
 	}
 
-	
 	public List<VentaDetalle> getById(int codigoVentaDetalle) {
 		String sql = "SELECT d.c_codigo_venta,p.c_codigo_producto, p.c_nombre_producto, p.c_precio_base , d.c_codigo_producto, d.c_cantidad, d.c_cantidad*p.c_precio_base  FROM t_producto p , t_venta_detalle d where p.c_codigo_producto = d.c_codigo_producto and  d.c_codigo_venta = ?";
-		
+
 		return jdbcTemplate.query(sql, (rs, rowNum) -> {
-			
-			
+
 			VentaDetalle detalle = new VentaDetalle();
 			detalle.setCodigoVenta(rs.getInt("c_codigo_venta"));
 			detalle.setIdProducto(rs.getInt("c_codigo_producto"));
@@ -44,11 +42,10 @@ public class VentaDetalleRepository {
 			detalle.setImporteProducto(rs.getBigDecimal("c_precio_base"));
 			detalle.setCantidad(rs.getBigDecimal("c_cantidad"));
 			detalle.setSubTotal(rs.getBigDecimal("d.c_cantidad*p.c_precio_base"));
-			
+
 			return detalle;
 		}, codigoVentaDetalle);
 	}
-
 
 	private int getNextId() {
 		String sql = "SELECT MAX(c_codigo_venta) + 1 FROM t_venta_detalle";
@@ -59,17 +56,15 @@ public class VentaDetalleRepository {
 		String sql = "INSERT INTO t_venta_detalle (c_codigo_venta, c_codigo_producto, c_cantidad)"
 				+ " VALUES (?, ?, ?)";
 		int newId = getNextId();
-		 System.out.println(newId);
-		jdbcTemplate.update(sql,newId, ventaDetalle.getIdProducto(),
-				ventaDetalle.getCantidad());
+		System.out.println(newId);
+		jdbcTemplate.update(sql, newId, ventaDetalle.getIdProducto(), ventaDetalle.getCantidad());
 		return ventaDetalle.getCodigoVenta();
 	}
 
 	public int update(VentaDetalle ventaDetalle) {
-		String sql = "UPDATE t_venta_detalle SET"  + " c_codigo_producto = ? ,"
-				+ " c_cantidad = ?" + " WHERE c_codigo_venta = ?";
-		return jdbcTemplate.update(sql, ventaDetalle.getIdProducto(),
-				ventaDetalle.getCantidad());
+		String sql = "UPDATE t_venta_detalle SET" + " c_codigo_producto = ? ," + " c_cantidad = ?"
+				+ " WHERE c_codigo_venta = ?";
+		return jdbcTemplate.update(sql, ventaDetalle.getIdProducto(), ventaDetalle.getCantidad());
 	}
 
 	public int delete(int codigoVentaDetalle) {

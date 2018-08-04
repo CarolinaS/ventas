@@ -16,5 +16,5 @@ public class VentaDetalle {
 	private BigDecimal importeProducto;
 	private BigDecimal cantidad;// en la bd está como decimal luego lo cambio la bd a entero
 	private BigDecimal subTotal;
-   
+
 }
