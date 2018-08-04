@@ -18,7 +18,7 @@ public class VentaDetalleBusiness {
 		return ventaDetalleRepository.getAll();
 	}
 
-	public VentaDetalle getById(int codigoVenta) {
+	public List<VentaDetalle> getById(int codigoVenta) {
 		return ventaDetalleRepository.getById(codigoVenta);
 	}
 

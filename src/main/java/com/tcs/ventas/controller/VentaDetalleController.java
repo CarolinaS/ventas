@@ -26,7 +26,7 @@ public class VentaDetalleController {
 	}
 
 	@GetMapping("/venta/{codigoVenta}")
-	public VentaDetalle getById(@PathVariable int codigoVenta) {
+	public List<VentaDetalle> getById(@PathVariable int codigoVenta) {
 		return ventaDetalleBusiness.getById(codigoVenta);
 	}
 
@@ -44,8 +44,8 @@ public class VentaDetalleController {
 	}
 
 	@DeleteMapping("/venta/{id}")
-	public VentaDetalle delete(@PathVariable("codigoVenta") int codigoVentaDetalle) {
-		VentaDetalle ventaDetalleEliminar = ventaDetalleBusiness.getById(codigoVentaDetalle);
+	public List<VentaDetalle> delete(@PathVariable("codigoVenta") int codigoVentaDetalle) {
+		List<VentaDetalle> ventaDetalleEliminar = ventaDetalleBusiness.getById(codigoVentaDetalle);
 		ventaDetalleBusiness.remove(codigoVentaDetalle);
 		return ventaDetalleEliminar;
 	}

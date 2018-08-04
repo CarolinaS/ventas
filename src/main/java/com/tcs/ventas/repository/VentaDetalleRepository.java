@@ -30,9 +30,10 @@ public class VentaDetalleRepository {
 		});
 	}
 
-	public VentaDetalle getById(int codigoVentaDetalle) {
+	
+	public List<VentaDetalle> getById(int codigoVentaDetalle) {
 		String sql = "SELECT d.c_codigo_venta,p.c_codigo_producto, p.c_nombre_producto, p.c_precio_base , d.c_codigo_producto, d.c_cantidad, d.c_cantidad*p.c_precio_base  FROM t_producto p , t_venta_detalle d where p.c_codigo_producto = d.c_codigo_producto and  d.c_codigo_venta = ?";
-		return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> {
+		return jdbcTemplate.query(sql, (rs, rowNum) -> {
 			VentaDetalle detalle = new VentaDetalle();
 			detalle.setCodigoVenta(rs.getInt("c_codigo_venta"));
 			detalle.setIdProducto(rs.getInt("c_codigo_producto"));
@@ -61,9 +62,9 @@ public class VentaDetalleRepository {
 	}
 
 	public int update(VentaDetalle ventaDetalle) {
-		String sql = "UPDATE t_venta_detalle SET" + " c_codigo_venta = ?," + " c_codigo_producto = ? ,"
+		String sql = "UPDATE t_venta_detalle SET"  + " c_codigo_producto = ? ,"
 				+ " c_cantidad = ?" + " WHERE c_codigo_venta = ?";
-		return jdbcTemplate.update(sql, ventaDetalle.getCodigoVenta(), ventaDetalle.getIdProducto(),
+		return jdbcTemplate.update(sql, ventaDetalle.getIdProducto(),
 				ventaDetalle.getCantidad());
 	}
 
