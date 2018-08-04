@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Cliente {
 	private int codigo;
-	private String nombre;
+	private String nombres;
 	private String apellidoPaterno;
-	private String apelldoMaterno;
-	private String numeroDocumento;
+	private String apellidoMaterno;
 }
